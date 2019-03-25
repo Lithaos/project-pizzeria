@@ -37,6 +37,7 @@
     menuProduct: {
       wrapperActive: 'active',
       imageVisible: 'active',
+      headers: 'product__header'
     },
   };
 
@@ -60,8 +61,8 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
-
-      console.log('new Prouct:', thisProduct);
+      thisProduct.initAccordion();
+      //console.log('new Prouct:', thisProduct);
     }
 
     renderInMenu() {
@@ -75,13 +76,39 @@
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
     }
+
+    initAccordion() {
+      const thisProduct = this;
+      /* find the clickable trigger (the element that should react to clicking) */
+      const productElement = thisProduct.element;
+      /* START: click event listener to trigger */
+      productElement.querySelector(select.menuProduct.clickable).addEventListener('click', function () {
+        /* prevent default action for event */
+        event.preventDefault();
+        /* toggle active class on element of thisProduct */
+        productElement.classList.toggle('active');
+        /* find all active products */
+        const activeProducts = document.querySelectorAll('.product.active');
+        /* START LOOP: for each active product */
+        for (let product of activeProducts) {
+          /* START: if the active product isn't the element of thisProduct */
+          if (product != productElement) {
+            /* remove class active for the active product */
+            product.classList.remove('active');
+            /* END: if the active product isn't the element of thisProduct */
+          }
+          /* END LOOP: for each active product */
+        }
+        /* END: click event listener to trigger */
+      });
+    }
   }
 
   const app = {
     initMenu() {
       const thisApp = this;
 
-      console.log('thisApp.data:', thisApp.data);
+      //console.log('thisApp.data:', thisApp.data);
 
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
@@ -91,17 +118,17 @@
     initData: function () {
       const thisApp = this;
 
-      thisApp.data = dataSource
+      thisApp.data = dataSource;
     },
 
     init: function () {
       const thisApp = this;
-      console.log('*** App starting ***');
+      /* console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
-
+*/
       thisApp.initData();
       thisApp.initMenu();
     },
