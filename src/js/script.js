@@ -204,7 +204,6 @@
           const images = thisProduct.imageWrapper;
           const imgOption = images.querySelector(image);
           if (optionSelected) {
-            
             if (imgOption != null)
               images.querySelector(image).classList.add(classNames.menuProduct.imageVisible);
           } else {
@@ -226,10 +225,8 @@
       /* multiply price by amount */
       thisProduct.priceSingle = price;
       thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
-
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = thisProduct.price;
-      console.log(thisProduct.params);
     }
 
     initAmountWidget() {
@@ -340,18 +337,13 @@
     }
 
     add(menuProduct) {
-      const thisCart = this;
-      
+      const thisCart = this; 
       /* generate HTML based on template */
-      const generatedHTML = templates.cartProduct(menuProduct.data);
+      const generatedHTML = templates.cartProduct(menuProduct);
       /* create element using utils.createElementFromHTML */
       thisCart.element = utils.createDOMFromHTML(generatedHTML);
-      /* add element to menu */
-      console.log(thisCart.data);
-    
+      /* add element to menu */  
       thisCart.dom.productList.appendChild(thisCart.element);
-
-
       console.log('adding product', menuProduct);
     }
   }
