@@ -346,6 +346,9 @@
       thisCart.dom.productList.addEventListener('updated', function(){
         thisCart.update();
       })
+      thisCart.dom.productList.addEventListener('remove',function(){
+        thisCart.remove(event.detail.cartProduct);
+      })
       });
     }
 
@@ -385,6 +388,13 @@
       }
     }
     
+    remove(cartProduct){
+      const thisCart = this;
+      const index = thisCart.products[cartProduct];
+      thisCart.products.splice(index,1);
+      cartProduct.dom.wrapper.innerHTML='';
+      thisCart.update();
+    }
   }
 
   class CartProduct {
