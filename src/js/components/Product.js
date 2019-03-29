@@ -166,7 +166,7 @@ export class Product {
     const thisProduct = this;
     thisProduct.name = thisProduct.data.name;
     thisProduct.amount = thisProduct.amountWidget.value;
-    const event = new CustomEvent('add-to-cart',{
+    const event = new CustomEvent('add-to-cart', {
       bubbles: true,
       detail: {
         product: thisProduct,
