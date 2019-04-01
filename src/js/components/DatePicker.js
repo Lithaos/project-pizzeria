@@ -14,15 +14,15 @@ export class DatePicker extends BaseWidget {
     super(wrapper, utils.dateToStr(new Date()));
     const thisWidget = this;
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
-
     thisWidget.initPlugin();
   }
 
   initPlugin() {
     const thisWidget = this;
     thisWidget.minDate = new Date(thisWidget.value);
+    thisWidget.dom.input.value = utils.dateToStr(new Date());
     thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
-    flatpickr(thisWidget.dom.input, {
+    flatpickr(thisWidget.dom.input, {  // eslint-disable-line
       defaultDate: thisWidget.minDate,
       minDate: thisWidget.minDate,
       maxDate: thisWidget.maxDate,
