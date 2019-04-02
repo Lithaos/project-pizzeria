@@ -96,7 +96,7 @@ export class Booking {
       thisBooking.makeBooked(booking.date, booking.hour, booking.duration, booking.table);
     }
     for (let eventRepeat of eventsRepeat) {
-      for (let i = 0; i < settings.datePicker.maxDaysInFuture; i++) {
+      for (let i = 0; i <= settings.datePicker.maxDaysInFuture; i++) {
         thisBooking.makeBooked(utils.dateToStr(utils.addDays(thisBooking.datePicker.minDate, i)), eventRepeat.hour, eventRepeat.duration, eventRepeat.table);
       }
     }
