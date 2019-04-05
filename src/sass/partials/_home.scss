@@ -63,11 +63,11 @@
   padding: 50px 20px;
 }
 
-.comment {
+.carousel-coment {
   height: 100%;
 }
 
-.comment div {
+.carousel-coment div {
   display: inline-block;
 }
 
@@ -156,7 +156,7 @@
 }
 
 .row div:hover img {
-  -webkit-filter: brightness(50%);
+  filter: brightness(50%);
 }
 
 .row div:hover span {

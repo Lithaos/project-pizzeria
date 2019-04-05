@@ -70,7 +70,8 @@ const app = {
 
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
-
+    thisApp.homeLinks = Array.from(document.querySelectorAll(select.nav.homeLinks));
+    thisApp.navLinks = thisApp.navLinks.concat(thisApp.homeLinks);
     let pagesMatchingHash = [];
 
     if (window.location.hash.length > 1) {
@@ -91,6 +92,7 @@ const app = {
         thisApp.activePage(id);
       });
     }
+    
   },
 
   activePage(pageId) {
@@ -113,6 +115,12 @@ const app = {
     thisApp.booking = new Booking(widget);
 
   },
+
+  carousel(){
+    const thisCarousel = this;
+
+    let coment = document.querySelectorAll('.');
+  }
 };
 
 app.init();
