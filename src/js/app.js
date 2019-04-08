@@ -9,7 +9,9 @@ import {
   classNames,
   settings
 } from './settings.js';
-import { Booking } from './components/Booking.js';
+import {
+  Booking
+} from './components/Booking.js';
 
 const app = {
   initMenu() {
@@ -50,6 +52,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.carousel();
   },
 
   initCart: function () {
@@ -92,7 +95,7 @@ const app = {
         thisApp.activePage(id);
       });
     }
-    
+
   },
 
   activePage(pageId) {
@@ -108,18 +111,33 @@ const app = {
     window.location.hash = '#/' + pageId;
   },
 
-  initBooking(){
+  initBooking() {
     const thisApp = this;
-    
+
     const widget = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(widget);
 
   },
 
-  carousel(){
-    const thisCarousel = this;
+  carousel() {
+    let comentIndex = 0;
+    setInterval(() => {
+      const comments = document.getElementsByClassName('carousel-coment');
+      const dots = document.getElementsByClassName('dot');
 
-    let coment = document.querySelectorAll('.');
+      if (comments.length == comentIndex) {
+        comentIndex = 0;
+      }
+      comentIndex++;
+      for (let i = 0; i < comments.length; i++) {
+        comments[i].classList.remove('comment-active');
+        dots[i].classList.remove('active');
+      }
+
+      comments[comentIndex - 1].classList.add('comment-active');
+      dots[comentIndex - 1].classList.add('active');
+
+    }, 3000);
   }
 };
 

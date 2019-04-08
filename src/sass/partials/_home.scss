@@ -12,6 +12,16 @@
 
 .half {
   position: relative;
+  overflow: hidden;
+  transition: 2s;
+}
+
+.half:hover h1 {
+  top: 30%;
+}
+
+.half:hover h3 {
+  top: 60%;
 }
 
 .home-links .half {
@@ -38,6 +48,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: 0.5s;
+}
+
+.half h3 {
+  position: absolute;
+  top: 115%;
+  left: 50%;
+  width: 80%;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: 0.8s;
 }
 
 .home-links h1 {
@@ -61,14 +82,21 @@
   margin: 0 auto;
   background: white;
   padding: 50px 20px;
+  max-width: 700px;
 }
 
 .carousel-coment {
   height: 100%;
+  display: none;
+  position: relative;
 }
 
 .carousel-coment div {
   display: inline-block;
+}
+
+.comment-active {
+  display: block;
 }
 
 .comment-image {
