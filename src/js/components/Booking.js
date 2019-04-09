@@ -48,7 +48,7 @@ export class Booking {
     thisBooking.hoursAmount = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
-    thisBooking.selectedTable = thisBooking.dom.wrapper.querySelector(select.booking.selected);
+    thisBooking.selectedTable = thisBooking.dom.wrapper.querySelectorAll(select.booking.selected);
     thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
     });
@@ -136,9 +136,10 @@ export class Booking {
     for (let table of thisBooking.dom.tables) {
       if (thisBooking.booked[thisBooking.date] != null && thisBooking.booked[thisBooking.date][thisBooking.hour] && thisBooking.booked[thisBooking.date][thisBooking.hour].includes(table.getAttribute(settings.booking.tableIdAttribute))) {
         table.classList.add(classNames.booking.tableBooked);
+        console.log("Dodaję klasę");
         if (table.classList.contains(classNames.booking.tableBooked)) {
           table.classList.remove(classNames.booking.selected);
-          thisBooking.selectedTable = null;
+          thisBooking.selectedTable = null; 
         }
       } else {
         table.classList.remove(classNames.booking.tableBooked);
@@ -147,7 +148,7 @@ export class Booking {
     thisBooking.initBooking();
   }
 
-  initBooking() {
+  /* initBooking() {
     const thisBooking = this;
 
     for (let table of thisBooking.dom.tables) {
@@ -159,6 +160,19 @@ export class Booking {
           }
           table.classList.add(classNames.booking.selected);
           thisBooking.selectedTable = table.getAttribute('data-table');
+        }
+      });
+    }
+  }
+*/
+  initBooking() {
+    const thisBooking = this;
+
+    for (let table of thisBooking.dom.tables) {
+      table.addEventListener('click', function () {
+        if (!table.classList.contains(classNames.booking.tableBooked)) {
+          table.classList.toggle(classNames.booking.selected);
+          console.log("Wywołałem Click");
         }
       });
     }
