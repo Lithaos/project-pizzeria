@@ -108,7 +108,7 @@ export class Booking {
       booking.table.forEach(element => {
         thisBooking.makeBooked(booking.date, booking.hour, booking.duration, element);
       });
-     
+
     }
     for (let eventRepeat of eventsRepeat) {
       for (let i = 0; i <= settings.datePicker.maxDaysInFuture; i++) {
@@ -150,25 +150,7 @@ export class Booking {
     }
   }
 
-  /* SINGLE TABLE 
- initBooking() {
-    const thisBooking = this;
 
-    for (let table of thisBooking.dom.tables) {
-      table.addEventListener('click', function () {
-        if (!table.classList.contains(classNames.booking.tableBooked)) {
-          for (let tab of thisBooking.dom.tables) {
-            tab.classList.remove(classNames.booking.selected);
-            thisBooking.selectedTable = null;
-          }
-          table.classList.add(classNames.booking.selected);
-          thisBooking.selectedTable = table.getAttribute('data-table');
-        }
-      });
-    }
-  }
-
-*/
   initBooking() {
     const thisBooking = this;
 
@@ -181,7 +163,6 @@ export class Booking {
           } else {
             thisBooking.selectedTable.splice(thisBooking.selectedTable.indexOf(table.getAttribute('data-table')), 1);
           }
-          //console.log(thisBooking.selectedTable);
         }
       });
     }
@@ -213,52 +194,12 @@ export class Booking {
     fetch(url, options)
       .then(function (response) {
         return response.json();
-      }).then(function (parsedResponse) {
-        console.log('parsedResponse', parsedResponse);
+      }).then(function () {
       });
-    console.log(payload.table);
     payload.table.forEach(element => {
-      console.log('bookuje ' + element);
       thisBooking.makeBooked(payload.date, payload.hour, payload.duration, element);
 
     });
     thisBooking.updateDOM();
-    //document.location.reload(true);
-
   }
-
-  /* SINGLE TABLE
-    sendBooking() {
-      const thisBooking = this;
-
-      const url = settings.db.url + '/' + settings.db.booking;
-
-      const payload = {
-        date: thisBooking.datePicker.value,
-        hour: thisBooking.hourPicker.value,
-        table: thisBooking.selectedTable,
-        repeat: false,
-        duration: thisBooking.hoursAmount.value,
-        ppl: thisBooking.peopleAmount.value,
-        starters: []
-      };
-
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      };
-
-      fetch(url, options)
-        .then(function (response) {
-          return response.json();
-        }).then(function (parsedResponse) {
-          console.log('parsedResponse', parsedResponse);
-        });
-      thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
-      document.location.reload(true);
-    }
-  */
 }
